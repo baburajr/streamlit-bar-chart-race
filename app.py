@@ -49,4 +49,5 @@ Shown are the latest news.
 - Built in `Python` using `streamlit`.
 ''')
 st.write('---')
+st.title('Bar chart race on active cases on kerala till now')
 st.write(charts)
