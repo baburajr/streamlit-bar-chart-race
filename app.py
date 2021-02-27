@@ -2,6 +2,15 @@ import pandas as pd
 import requests
 import bar_chart_race as brc
 import streamlit as st
+import streamlit.components.v1 as stc
+import codecs
+
+
+def race_chart(chart_html,width=700,height=500):
+    chart_fie = codecs.open(chart_html, 'r')
+    page = chart_fie.read()
+    stc.html(page,width=width,height=height,scrolling=False)
+
 
 
 def kerala_data():
@@ -38,16 +47,21 @@ def kerala_data():
 
 
 kl_df = kerala_data()
-charts = brc.bar_chart_race(df=kl_df, filename=None)
 
 st.markdown('''
 # Kerala Active Cases from January 2020 till Now using Steamlit and Python
-Shown are the latest news.
 
 **Credits**
-- App built by [Baburaj R](https://wa.me/919567284082)
+- App built by [Baburaj R](https://linkedin.com/in/baburajr)
 - Built in `Python` using `streamlit`.
 ''')
 st.write('---')
-st.title('Bar chart race on active cases on kerala till now')
-st.write(charts)
+
+def main():
+    race_chart('index.html')
+    st.write('Updated kerala district datas')
+    st.dataframe(kl_df)
+
+
+if __name__ == '__main__':
+    main()
